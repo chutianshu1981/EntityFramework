@@ -941,7 +941,7 @@ namespace Microsoft.Data.Entity.Metadata.Internal
                             foreignKeyProperty.PropertyType,
                             principalEntityTypeBuilder);
                     }
-                    
+
                     var keyBuilder = principalEntityTypeBuilder.Key(principalKeyProperties, ConfigurationSource.Convention);
 
                     principalKey = keyBuilder.Metadata;
