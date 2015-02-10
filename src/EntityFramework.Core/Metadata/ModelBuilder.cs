@@ -238,7 +238,7 @@ namespace Microsoft.Data.Entity.Metadata
                         null,
                         collection ?? "",
                         ConfigurationSource.Explicit,
-                        oneToOne: false));
+                        isUnique: false));
             }
 
             public virtual ReferenceNavigationBuilder HasOne(
@@ -275,7 +275,7 @@ namespace Microsoft.Data.Entity.Metadata
                         null,
                         collection ?? "",
                         ConfigurationSource.Explicit,
-                        oneToOne: false));
+                        isUnique: false));
             }
 
             public class KeyBuilder : IKeyBuilder<KeyBuilder>
@@ -828,7 +828,7 @@ namespace Microsoft.Data.Entity.Metadata
                         null,
                         collectionName,
                         configurationSource: ConfigurationSource.Explicit,
-                        oneToOne: false));
+                        isUnique: false));
             }
 
             public class ReferenceNavigationBuilder<TRelatedEntity> : ReferenceNavigationBuilder

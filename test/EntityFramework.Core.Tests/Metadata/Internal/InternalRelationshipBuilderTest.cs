@@ -121,13 +121,13 @@ namespace Microsoft.Data.Entity.Tests.Metadata.Internal
             Assert.Null(relationshipBuilder.Metadata.IsRequired);
             Assert.False(((IForeignKey)relationshipBuilder.Metadata).IsRequired);
 
-            Assert.True(relationshipBuilder.Required(true, ConfigurationSource.Convention));
+            Assert.NotNull(relationshipBuilder.Required(true, ConfigurationSource.Convention));
             Assert.True(((IForeignKey)relationshipBuilder.Metadata).IsRequired);
 
-            Assert.True(relationshipBuilder.Required(false, ConfigurationSource.DataAnnotation));
+            Assert.NotNull(relationshipBuilder.Required(false, ConfigurationSource.DataAnnotation));
             Assert.False(((IForeignKey)relationshipBuilder.Metadata).IsRequired);
 
-            Assert.False(relationshipBuilder.Required(true, ConfigurationSource.Convention));
+            Assert.Null(relationshipBuilder.Required(true, ConfigurationSource.Convention));
             Assert.False(((IForeignKey)relationshipBuilder.Metadata).IsRequired);
         }
 
@@ -146,15 +146,15 @@ namespace Microsoft.Data.Entity.Tests.Metadata.Internal
                 .ForeignKey(typeof(Order), new[] { Order.CustomerIdProperty.Name, Order.CustomerUniqueProperty.Name }, ConfigurationSource.DataAnnotation);
             Assert.True(((IForeignKey)relationshipBuilder.Metadata).IsRequired);
 
-            Assert.False(relationshipBuilder.Required(false, ConfigurationSource.Convention));
+            Assert.Null(relationshipBuilder.Required(false, ConfigurationSource.Convention));
             Assert.Null(customerIdProperty.IsNullable);
             Assert.False(customerUniqueProperty.IsNullable.Value);
 
-            Assert.True(relationshipBuilder.Required(true, ConfigurationSource.Convention));
+            Assert.NotNull(relationshipBuilder.Required(true, ConfigurationSource.Convention));
             Assert.False(customerIdProperty.IsNullable.Value);
             Assert.False(customerUniqueProperty.IsNullable.Value);
 
-            Assert.True(relationshipBuilder.Required(false, ConfigurationSource.Explicit));
+            Assert.NotNull(relationshipBuilder.Required(false, ConfigurationSource.Explicit));
             Assert.False(customerIdProperty.IsNullable.Value);
             Assert.True(customerUniqueProperty.IsNullable.Value);
         }
